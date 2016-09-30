@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import request
 
 app = Flask(__name__)
 
@@ -7,9 +8,13 @@ app = Flask(__name__)
 def hello_world():
     return 'Hello World!a'
 
-@app.route('/webos')
+
+#localhost:5000/params?params1=Eduardo_Ismael
+@app.route('/params')
 def webos():
-    return 'webos!'
+    param = request.args.get("params1", "no coincide este parametro")
+    param2 = request.args.get("param2","no coincide" )
+    return 'params! {}, {}'.format(param, param2)
 
 
 if __name__ == '__main__':
